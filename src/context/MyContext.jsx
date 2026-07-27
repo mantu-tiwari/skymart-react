@@ -3,7 +3,7 @@ import { createContext, useState } from "react";
 export const MyShop = createContext()
  
 export const ContextProvider = ({children}) => {
-    const [count, setCount] = useState(0)
+    const [formToggle, setFormToggle] = useState(true)
     
-    return <MyShop.Provider value={count} > {children} </MyShop.Provider>
+    return <MyShop.Provider value={{setFormToggle, formToggle}} > {children} </MyShop.Provider>
 }

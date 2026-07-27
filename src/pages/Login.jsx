@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
+import { MyShop } from "../context/MyContext";
 
 const Login = () => {
+
+  const {setFormToggle} = useContext(MyShop)
+
   return (
     <div>
       <div className="min-h-screen bg-black flex">
@@ -99,7 +103,9 @@ const Login = () => {
             </form>
             <p className="text-center text-zinc-400 mt-8">
               Don't have an account?
-              <span className="text-lime-400 ml-2 cursor-pointer font-semibold">
+              <span onClick={() => {
+                  setFormToggle((prev) => !prev)
+              }} className="text-lime-400 ml-2 cursor-pointer font-semibold">
                 Create one
               </span>
             </p>
