@@ -1,15 +1,41 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { MyShop } from "../context/MyContext";
+import toast from "react-hot-toast";
 
 const Login = () => {
+  const { setFormToggle, setHomeToggle } = useContext(MyShop);
+  const {
+    register,
+    reset,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    // mode: 'onChange',
+  });
 
-  const {setFormToggle} = useContext(MyShop)
+  const loginSubmit = (loginData) => {
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    if (!storedUser) {
+      toast.error("Please Create an Account First");
+      return;
+    }
+    if (
+      loginData.email === storedUser.email &&
+      loginData.password === storedUser.password
+    ) {
+      toast.success("Login Successfully");
+      setHomeToggle((prev) => !prev);
+    } else {
+      toast.error("Invalid Email or Password");
+    }
+
+    reset();
+  };
 
   return (
     <div>
       <div className="min-h-screen bg-black flex">
-
         {/* Left Section */}
         <div className="hidden lg:flex w-1/2 bg-gradient-to-br from-lime-950 via-black to-black p-16 flex-col justify-between">
           <div>
@@ -55,7 +81,6 @@ const Login = () => {
                 <p className="text-zinc-400 mt-2">Rating</p>
               </div>
             </div>
-
           </div>
         </div>
 
@@ -66,31 +91,50 @@ const Login = () => {
             <p className="text-zinc-400 mt-2 mb-8">
               Enter your credentials to continue.
             </p>
-            <form className="space-y-6">
+            <form onSubmit={handleSubmit(loginSubmit)} className="space-y-6">
               <div>
                 <div className="flex items-center bg-zinc-800 rounded-xl border border-zinc-700 focus-within:border-lime-400 px-4">
                   <i className="fa-regular fa-envelope text-zinc-500"></i>
                   <input
+                    {...register("email", {
+                      required: "Email is Required",
+                      pattern: {
+                        value:
+                          /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                        message: "Invalid Credential",
+                      },
+                    })}
                     type="email"
                     placeholder="Email Address"
                     className="w-full bg-transparent px-4 py-4 outline-none text-white placeholder:text-zinc-500"
                   />
                 </div>
+                <p className="text-red-500 text-[12px]">
+                  {" "}
+                  {errors.email?.message}{" "}
+                </p>
               </div>
               <div>
                 <div className="flex items-center bg-zinc-800 rounded-xl border border-zinc-700 focus-within:border-lime-400 px-4">
                   <i className="fa-solid fa-lock text-zinc-500"></i>
                   <input
+                    {...register("password", {
+                      required: "Password is required",
+                    })}
                     type="password"
                     placeholder="Password"
                     className="w-full bg-transparent px-4 py-4 outline-none text-white placeholder:text-zinc-500"
                   />
                   <i className="fa-regular fa-eye text-zinc-500 cursor-pointer"></i>
                 </div>
+                <p className="text-red-500 text-[12px]">
+                  {" "}
+                  {errors.password?.message}{" "}
+                </p>
                 <div className="text-right mt-2">
                   <button
                     type="button"
-                    className="text-sm text-zinc-400 hover:text-lime-400"
+                    className="text-sm text-zinc-400 hover:text-lime-400 cursor-pointer"
                   >
                     Forgot Password?
                   </button>
@@ -103,9 +147,12 @@ const Login = () => {
             </form>
             <p className="text-center text-zinc-400 mt-8">
               Don't have an account?
-              <span onClick={() => {
-                  setFormToggle((prev) => !prev)
-              }} className="text-lime-400 ml-2 cursor-pointer font-semibold">
+              <span
+                onClick={() => {
+                  setFormToggle((prev) => !prev);
+                }}
+                className="text-lime-400 ml-2 cursor-pointer font-semibold"
+              >
                 Create one
               </span>
             </p>

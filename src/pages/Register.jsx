@@ -4,28 +4,29 @@ import { MyShop } from "../context/MyContext";
 import toast from "react-hot-toast";
 
 const Register = () => {
-
-  
-
-  const {setFormToggle} = useContext(MyShop)
-  const {register, handleSubmit, reset,watch, formState:{errors} } = useForm({
-    mode: 'onChange'
-  })
+  const { setFormToggle } = useContext(MyShop);
+  const {
+    register,
+    handleSubmit,
+    reset,
+    watch,
+    formState: { errors },
+  } = useForm({
+    mode: "onChange",
+  });
   const passwordValue = watch("password");
 
-  const formSubmit = (data) => {
-      console.log(data);
-      localStorage.setItem('RegistrationData', JSON.stringify(data))
-      toast.success('Account Created Successfully')
-      setFormToggle((prev) => !prev)
-      reset()
-  }
+  const registerSubmit = (RegistrationData) => {
+    console.log(RegistrationData);
+    localStorage.setItem("user", JSON.stringify(RegistrationData));
+    toast.success("Account Created Successfully");
+    setFormToggle((prev) => !prev);
+    reset();
+  };
 
   return (
-
     <div className="min-h-screen bg-zinc-950 flex items-center justify-center px-4">
       <div className="w-full max-w-md bg-zinc-900 rounded-3xl border border-zinc-800 shadow-2xl p-8">
-
         {/* Logo */}
         <div className="flex items-center justify-center gap-3 mb-8">
           <div className="h-12 w-12 rounded-xl bg-lime-400 flex items-center justify-center">
@@ -42,52 +43,60 @@ const Register = () => {
         <p className="text-zinc-400 mb-8">Join SkyMart and start shopping.</p>
 
         {/* Form */}
-        <form onSubmit={handleSubmit(formSubmit)} className="flex flex-col gap-4">
+        <form
+          onSubmit={handleSubmit(registerSubmit)}
+          className="flex flex-col gap-4"
+        >
           <input
-          {...register('name',{
-            required: 'Name is Required',
-          })}
+            {...register("name", {
+              required: "Name is Required",
+            })}
             type="text"
             placeholder="Full Name"
             className="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-4 py-3 text-white outline-none focus:border-lime-400"
           />
           <p className="text-red-500 text-[12px]">{errors.name?.message} </p>
           <input
-          {...register('email',{
-            required: 'Email is Required',
-            pattern: {
+            {...register("email", {
+              required: "Email is Required",
+              pattern: {
                 value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                message: 'Invlid email address'
-            }
-          })}
+                message: "Invlid email address",
+              },
+            })}
             type="email"
             placeholder="Email Address"
             className="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-4 py-3 text-white outline-none focus:border-lime-400"
           />
           <p className="text-red-500 text-[12px]"> {errors.email?.message} </p>
           <input
-          {...register('password',{
-            required: 'password is Required',
-            minLength: {
-              value: 6,
-              message: 'Minimum 6 digit is required'
-            }
-          })}
+            {...register("password", {
+              required: "password is Required",
+              minLength: {
+                value: 6,
+                message: "Minimum 6 digit is required",
+              },
+            })}
             type="password"
             placeholder="Password"
             className="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-4 py-3 text-white outline-none focus:border-lime-400"
           />
-          <p className="text-red-500 text-[12px]">{errors.password?.message} </p>
+          <p className="text-red-500 text-[12px]">
+            {errors.password?.message}{" "}
+          </p>
           <input
-          {...register('cnfPassword',{
-            required: 'Please Confirm your Password',
-             validate: (value) => value === passwordValue || 'The passwords do not match'
-          })}
+            {...register("cnfPassword", {
+              required: "Please Confirm your Password",
+              validate: (value) =>
+                value === passwordValue || "The passwords do not match",
+            })}
             type="password"
             placeholder="Confirm Password"
             className="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-4 py-3 text-white outline-none focus:border-lime-400"
           />
-          <p className="text-red-500 text-[12px]">{errors.cnfPassword?.message} </p>
+          <p className="text-red-500 text-[12px]">
+            {errors.cnfPassword?.message}{" "}
+          </p>
           <button className="w-full bg-lime-400 text-black font-semibold py-3 rounded-xl hover:bg-lime-300 duration-300 cursor-pointer">
             Create Account
           </button>
@@ -96,9 +105,12 @@ const Register = () => {
         {/* Bottom */}
         <p className="text-center text-zinc-400 mt-8">
           Already have an account?
-          <span onClick={() => {
-              setFormToggle((prev) => !prev)
-          }} className="text-lime-400 font-semibold cursor-pointer ml-2">
+          <span
+            onClick={() => {
+              setFormToggle((prev) => !prev);
+            }}
+            className="text-lime-400 font-semibold cursor-pointer ml-2"
+          >
             Sign In
           </span>
         </p>
