@@ -6,7 +6,7 @@ import ProductCard from '../components/ProductCard'
 const Shop = () => {
 
   const {setPageToggle, product} = useContext(MyShop)
-  console.log(product);
+  // console.log(product);
 
   return (
     <div className="min-h-screen bg-[#090909] text-white" >

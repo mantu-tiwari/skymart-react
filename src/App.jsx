@@ -7,16 +7,18 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { MyShop } from "./context/MyContext";
 import Shop from "./pages/Shop";
+import Cart from "./pages/Cart";
 
 const App = () => {
-  const { formToggle, homeToggle, pageToggle } = useContext(MyShop);
+  const { formToggle, homeToggle, pageToggle,cartToggle } = useContext(MyShop);
 
   return (
     <div>
       <Navbar/>
       {/* {formToggle ? <Register/> : <Login/>} */}
       {/* {homeToggle ? <Home /> : <Login />} */}
-      {pageToggle ? <Home/> : <Shop/>}
+      {/* {pageToggle ? <Home/> : <Shop/>} */}
+      {cartToggle ? <Cart/> : <Shop/>}
 
       {/* <Navbar/> */}
       {/* <About/> */}

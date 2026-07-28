@@ -38,7 +38,7 @@ const Login = () => {
     <div>
       <div className="min-h-screen bg-black flex">
         {/* Left Section */}
-        <div className="hidden lg:flex w-1/2 bg-gradient-to-br from-lime-950 via-black to-black p-16 flex-col justify-between">
+        <div className="hidden lg:flex w-1/2 bg-linear-to-br from-lime-950 via-black to-black p-16 flex-col justify-between">
           <div>
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 rounded-xl bg-lime-400 flex items-center justify-center">

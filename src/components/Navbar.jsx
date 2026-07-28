@@ -4,7 +4,7 @@ import { MyShop } from "../context/MyContext";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const {setPageToggle} = useContext(MyShop)
+  const {setPageToggle,setCartToggle} = useContext(MyShop)
   const commingSoon = () => {
       toast.error('Feature Comming Soon')
   }
@@ -33,6 +33,7 @@ const Navbar = () => {
             </a>
             <a onClick={() => {
                 setPageToggle(false)
+                setCartToggle(false)
             }} href="#" className="text-white font-medium hover:text-lime-400 transition">
               Shop
             </a>
@@ -47,7 +48,9 @@ const Navbar = () => {
               <i className="fa-regular fa-heart"></i>
             </button>
             <button className="relative text-xl text-white hover:text-lime-400">
-              <i className="fa-solid fa-cart-shopping"></i>
+              <i onClick={() => {
+                  setCartToggle(true)
+              }} className="fa-solid fa-cart-shopping"></i>
               <span className="absolute -top-2 -right-3 bg-lime-400 text-black text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
                 2
               </span>

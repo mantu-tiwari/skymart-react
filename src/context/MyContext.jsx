@@ -7,10 +7,11 @@ export const ContextProvider = ({ children }) => {
   const [formToggle, setFormToggle] = useState(false);
   const [homeToggle, setHomeToggle] = useState(true);
   const [pageToggle, setPageToggle] = useState(false);
+  const [cartToggle, setCartToggle] = useState(false)
   const [product, setProduct] = useState([])
+  const [cartProduct, setCartProduct] = useState([])
   console.log(product);
-
-
+  console.log( cartProduct);
 
   const getProductData = async () => {
     try {
@@ -33,7 +34,11 @@ export const ContextProvider = ({ children }) => {
         setHomeToggle,
         pageToggle,
         setPageToggle,
-        product
+        product,
+        setCartToggle,
+        cartToggle,
+        setCartProduct,
+        cartProduct,
       }}
     >
       {children}
