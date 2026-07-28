@@ -1,17 +1,23 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import toast from "react-hot-toast";
+import { MyShop } from "../context/MyContext";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const {setPageToggle} = useContext(MyShop)
+  const commingSoon = () => {
+      toast.error('Feature Comming Soon')
+  }
 
   return (
-    <header className="sticky top-0 z-50 bg-[#090909]/90 backdrop-blur border-b border-zinc-800">
+    <header className="  sticky top-0 z-50 bg-[#090909]/90 backdrop-blur border-b border-zinc-800">
       <div className="max-w-7xl mx-auto px-6">
         <div className="h-20 flex justify-between items-center">
 
           {/* Logo */}
           <div className="flex items-center gap-3">
             <div className="w-11 h-11 rounded-xl bg-lime-400 flex items-center justify-center">
-              <i className="fa-solid fa-bolt text-black text-lg"></i>
+              <i className="fa-solid fa-bolt text-black text-lg cursor-pointer"></i>
             </div>
             <h1 className="text-2xl font-bold text-white">
               Sky<span className="text-lime-400">Mart</span>
@@ -20,13 +26,17 @@ const Navbar = () => {
 
           {/* Desktop Menu */}
           <nav className="hidden lg:flex items-center gap-10">
-            <a href="#" className="text-white hover:text-lime-400 transition">
+            <a onClick={() => {
+                setPageToggle(true)
+            }} href="#" className="text-white font-medium hover:text-lime-400 transition">
               Home
             </a>
-            <a href="#" className="text-white hover:text-lime-400 transition">
+            <a onClick={() => {
+                setPageToggle(false)
+            }} href="#" className="text-white font-medium hover:text-lime-400 transition">
               Shop
             </a>
-            <a href="#" className="text-lime-400 font-medium">
+            <a href="#" className="text-white font-medium hover:text-lime-400 transition">
               About
             </a>
           </nav>
@@ -64,32 +74,37 @@ const Navbar = () => {
       {menuOpen && (
         <div className="lg:hidden border-t border-zinc-800 bg-[#111111]">
           <nav className="flex flex-col px-6 py-6 gap-5">
-            <a href="#" className="text-white">
+            <a href="#" className="text-white hover:text-lime-400 transition">
               Home
             </a>
-            <a href="#" className="text-white">
-              Products
+            <a href="#" className="text-white hover:text-lime-400 transition">
+              Shop
             </a>
-            <a href="#" className="text-lime-400">
+            <a href="#" className="text-white hover:text-lime-400 transition">
               About
             </a>
-            <a href="#" className="text-white">
-              Contact
-            </a>
             <hr className="border-zinc-700" />
-            <button className="text-left text-white">
+            <button onClick={() => {
+                commingSoon()
+            }} className="text-left text-white">
               <i className="fa-regular fa-heart mr-3"></i>
               Wishlist
             </button>
-            <button className="text-left text-white">
+            <button onClick={() => {
+                commingSoon()
+            }} className="text-left text-white">
               <i className="fa-solid fa-cart-shopping mr-3"></i>
               Cart
             </button>
-            <button className="text-left text-white">
+            <button onClick={() => {
+                commingSoon()
+            }} className="text-left text-white">
               <i className="fa-regular fa-user mr-3"></i>
               Profile
             </button>
-            <button className="bg-lime-400 text-black py-3 rounded-xl font-semibold mt-2">
+            <button onClick={() => {
+                commingSoon()
+            }} className="bg-lime-400 text-black py-3 rounded-xl font-semibold mt-2">
               Login
             </button>
           </nav>

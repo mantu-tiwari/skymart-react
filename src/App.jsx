@@ -6,18 +6,21 @@ import About from "./pages/About";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { MyShop } from "./context/MyContext";
+import Shop from "./pages/Shop";
 
 const App = () => {
-  const { formToggle, homeToggle } = useContext(MyShop);
+  const { formToggle, homeToggle, pageToggle } = useContext(MyShop);
 
   return (
     <div>
+      <Navbar/>
       {/* {formToggle ? <Register/> : <Login/>} */}
-      {homeToggle ? <Home /> : <Login />}
+      {/* {homeToggle ? <Home /> : <Login />} */}
+      {pageToggle ? <Home/> : <Shop/>}
 
       {/* <Navbar/> */}
       {/* <About/> */}
-      {/* <Footer/> */}
+      <Footer/>
     </div>
   );
 };

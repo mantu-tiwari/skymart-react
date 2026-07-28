@@ -25,6 +25,7 @@ const Login = () => {
       loginData.password === storedUser.password
     ) {
       toast.success("Login Successfully");
+      localStorage.setItem('isLoggedIn', 'true')
       setHomeToggle((prev) => !prev);
     } else {
       toast.error("Invalid Email or Password");
