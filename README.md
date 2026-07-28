@@ -1,12 +1,124 @@
-# React + Vite
+# 🛒 SkyMart React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+SkyMart React is a modern and responsive e-commerce web application built using React. It allows users to browse products, create an account, log in, manage their shopping cart, and view order summaries with a clean user interface.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+- 🔐 User Registration & Login (Local Storage)
+- 🏠 Responsive Home Page
+- 🛍️ Product Listing using Fake Store API
+- 🔍 Product Categories
+- 🛒 Add to Cart
+- ➕ Increase & Decrease Quantity
+- ❌ Remove Items from Cart
+- 💰 Dynamic Cart Value & Order Summary
+- 📱 Fully Responsive Design
+- 🔥 Toast Notifications
+- 🎨 Modern UI with Tailwind CSS
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🛠️ Tech Stack
+
+- React.js
+- Context API
+- React Hook Form
+- Axios
+- Tailwind CSS
+- React Hot Toast
+- Fake Store API
+- Local Storage
+
+---
+
+## 📂 Project Structure
+
+```
+src/
+│── assets/
+│── components/
+│   ├── Navbar
+│   ├── Footer
+│   ├── ProductCard
+│   ├── CartCard
+│   ├── OrderSummary
+│   └── ShopHeader
+│
+│── context/
+│   └── MyContext
+│
+│── pages/
+│   ├── Home
+│   ├── Shop
+│   ├── Cart
+│   ├── Login
+│   ├── Register
+│   └── About
+│
+│── App.jsx
+│── main.jsx
+```
+
+---
+
+## 📸 Screens
+
+- Home
+- Shop
+- Cart
+- Login
+- Register
+- About
+
+---
+
+
+## 🌐 API Used
+
+Fake Store API
+
+https://fakestoreapi.com/products
+
+---
+
+## 📚 What I Learned
+
+- Building reusable React components
+- Managing global state using Context API
+- Fetching API data with Axios
+- Form handling using React Hook Form
+- Managing cart functionality
+- Working with Local Storage
+- Responsive UI using Tailwind CSS
+- Component-based project architecture
+
+---
+
+## 📌 Future Improvements
+
+- React Router
+- Wishlist
+- Product Search
+- Product Filtering
+- Dark / Light Mode
+- Backend Authentication
+- Payment Integration
+- Order History
+
+---
+
+## 👨‍💻 Author
+
+**Mantu Kumar Tiwari**
+
+- GitHub: https://github.com/mantu-tiwari
+- LinkedIn: https://www.linkedin.com/in/mantu-kumar-tiwari
+- Live Url: https://skymart-react-mantu-tiwari.vercel.app/
+
+---
+
+## ⭐ If you like this project
+
+Give this repository a ⭐ on GitHub.
