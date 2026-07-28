@@ -1,18 +1,42 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
+import axios from "axios";
 
 export const MyShop = createContext();
 
 export const ContextProvider = ({ children }) => {
   const [formToggle, setFormToggle] = useState(false);
   const [homeToggle, setHomeToggle] = useState(true);
-  const [pageToggle, setPageToggle] = useState(true)
+  const [pageToggle, setPageToggle] = useState(false);
+  const [product, setProduct] = useState([])
+  console.log(product);
+
+
+
+  const getProductData = async () => {
+    try {
+        const res = await axios.get('https://fakestoreapi.com/products')
+        setProduct(res.data)
+    } catch (error) {
+        console.log('Error is ', error);
+    }  
+  }
+ useEffect(() => {
+      getProductData()
+ },[])
 
   return (
     <MyShop.Provider
-      value={{ setFormToggle, formToggle, homeToggle, setHomeToggle, pageToggle, setPageToggle }}
+      value={{
+        setFormToggle,
+        formToggle,
+        homeToggle,
+        setHomeToggle,
+        pageToggle,
+        setPageToggle,
+        product
+      }}
     >
-      {" "}
-      {children}{" "}
+      {children}
     </MyShop.Provider>
   );
 };
