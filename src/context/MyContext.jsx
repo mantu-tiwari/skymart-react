@@ -7,23 +7,39 @@ export const ContextProvider = ({ children }) => {
   const [formToggle, setFormToggle] = useState(false);
   const [homeToggle, setHomeToggle] = useState(true);
   const [pageToggle, setPageToggle] = useState(false);
-  const [cartToggle, setCartToggle] = useState(false)
-  const [product, setProduct] = useState([])
-  const [cartProduct, setCartProduct] = useState([])
+  const [cartToggle, setCartToggle] = useState(false);
+  const [product, setProduct] = useState([]);
+  const [cartProduct, setCartProduct] = useState([]);
   console.log(product);
-  console.log( cartProduct);
+  console.log(cartProduct);
 
   const getProductData = async () => {
     try {
-        const res = await axios.get('https://fakestoreapi.com/products')
-        setProduct(res.data)
+      const res = await axios.get("https://fakestoreapi.com/products");
+      setProduct(res.data);
     } catch (error) {
-        console.log('Error is ', error);
-    }  
+      console.log("Error is ", error);
+    }
+  };
+  useEffect(() => {
+    getProductData();
+  }, []);
+
+  //  manipulate quantity logic
+  const incQuantity = (id) => {
+      setCartProduct((prev) => {
+          return prev.map((elem) => {
+              return elem.id === id ? {...elem, quantity: elem.quantity+1} : elem
+          })
+      })
   }
- useEffect(() => {
-      getProductData()
- },[])
+  const decQuantity = (id) => {
+      setCartProduct((prev) => {
+          return prev.map((elem) => {
+              return elem.id === id ? {...elem, quantity: elem.quantity-1} : elem
+          })
+      })
+  }
 
   return (
     <MyShop.Provider
@@ -39,6 +55,8 @@ export const ContextProvider = ({ children }) => {
         cartToggle,
         setCartProduct,
         cartProduct,
+        incQuantity,
+        decQuantity
       }}
     >
       {children}

@@ -5,7 +5,7 @@ import ProductCard from '../components/ProductCard'
 
 const Shop = () => {
 
-  const {setPageToggle, product} = useContext(MyShop)
+  const {setPageToggle, product, cartProduct} = useContext(MyShop)
   // console.log(product);
 
   return (
@@ -13,7 +13,12 @@ const Shop = () => {
       <ShopHeader/>
       <div className='grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-4 p-4' >
         {product.map((e) => {
-            return <ProductCard key={e.id} product={e} />
+          // checking that is product me se jo data aa raha hai ek ek karke kya isme se pahle se koi cart me hai already
+          const isInCart = cartProduct.find((val,i) => {
+              return e.id === val.id
+            })
+            // console.log(isInCart);
+            return <ProductCard key={e.id} product={e} isInCart={isInCart} />
         })}
       </div>
     </div>

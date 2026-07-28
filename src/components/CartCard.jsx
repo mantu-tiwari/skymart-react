@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { MyShop } from "../context/MyContext";
 
 const CartCard = ({ item }) => {
 
@@ -32,7 +33,7 @@ const CartCard = ({ item }) => {
               <i className="fa-solid fa-minus text-sm text-white"></i>
             </button>
 
-            <span className="text-lg font-semibold">1</span>
+            <span className="text-lg font-semibold">{item.quantity}</span>
 
             <button className="w-10 h-10 rounded-lg bg-lime-400 hover:bg-lime-300 text-black transition">
               <i className="fa-solid fa-plus text-sm"></i>
