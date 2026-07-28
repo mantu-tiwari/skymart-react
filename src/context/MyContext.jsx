@@ -4,10 +4,12 @@ import axios from "axios";
 export const MyShop = createContext();
 
 export const ContextProvider = ({ children }) => {
-  const [formToggle, setFormToggle] = useState(false);
-  const [homeToggle, setHomeToggle] = useState(true);
-  const [pageToggle, setPageToggle] = useState(false);
-  const [cartToggle, setCartToggle] = useState(false);
+  // const [formToggle, setFormToggle] = useState(false);
+  // const [homeToggle, setHomeToggle] = useState(true);
+  // const [pageToggle, setPageToggle] = useState(false);
+  // const [cartToggle, setCartToggle] = useState(false);
+
+  const [currentPage, setCurrentPage] = useState('login')
   const [product, setProduct] = useState([]);
   const [cartProduct, setCartProduct] = useState([]);
   console.log(product);
@@ -44,19 +46,13 @@ export const ContextProvider = ({ children }) => {
   return (
     <MyShop.Provider
       value={{
-        setFormToggle,
-        formToggle,
-        homeToggle,
-        setHomeToggle,
-        pageToggle,
-        setPageToggle,
+        currentPage,
+        setCurrentPage,
         product,
-        setCartToggle,
-        cartToggle,
-        setCartProduct,
         cartProduct,
         incQuantity,
-        decQuantity
+        decQuantity,
+        setCartProduct
       }}
     >
       {children}

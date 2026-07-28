@@ -4,7 +4,7 @@ import { MyShop } from "../context/MyContext";
 import toast from "react-hot-toast";
 
 const Register = () => {
-  const { setFormToggle } = useContext(MyShop);
+  const { setCurrentPage } = useContext(MyShop);
   const {
     register,
     handleSubmit,
@@ -20,7 +20,7 @@ const Register = () => {
     console.log(RegistrationData);
     localStorage.setItem("user", JSON.stringify(RegistrationData));
     toast.success("Account Created Successfully");
-    setFormToggle((prev) => !prev);
+    setCurrentPage('login')
     reset();
   };
 
@@ -107,7 +107,7 @@ const Register = () => {
           Already have an account?
           <span
             onClick={() => {
-              setFormToggle((prev) => !prev);
+              setCurrentPage('login')
             }}
             className="text-lime-400 font-semibold cursor-pointer ml-2"
           >

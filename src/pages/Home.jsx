@@ -5,7 +5,7 @@ import { MyShop } from "../context/MyContext";
 
 const Home = () => {
 
-  const {setPageToggle} = useContext(MyShop)
+  const {setCurrentPage} = useContext(MyShop)
 
   return (
     
@@ -31,7 +31,7 @@ const Home = () => {
                 </p>
                 <div className="flex gap-4 mt-10">
                   <button onClick={() => {
-                      setPageToggle((prev) => !prev)
+                      setCurrentPage('shop')
                   }} className="bg-lime-400 text-black px-8 py-3 rounded-full font-semibold hover:bg-lime-300 transition">
                     Shop Now
                   </button>

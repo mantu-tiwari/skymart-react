@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import { MyShop } from "../context/MyContext";
 
 const About = () => {
+
+  const {setCurrentPage} = useContext(MyShop)
+
   return (
     <main className="bg-[#090909] min-h-screen text-white">
       {/* Hero Section */}
@@ -236,7 +240,9 @@ const About = () => {
             thousands of happy customers and experience shopping made simple.
           </p>
 
-          <button className="mt-10 bg-lime-400 hover:bg-lime-300 text-black font-semibold px-10 py-4 rounded-full transition duration-300">
+          <button onClick={() => {
+              setCurrentPage('shop')
+          }} className="mt-10 bg-lime-400 hover:bg-lime-300 text-black font-semibold px-10 py-4 rounded-full transition duration-300">
             Browse Products
             <i className="fa-solid fa-arrow-right ml-3"></i>
           </button>

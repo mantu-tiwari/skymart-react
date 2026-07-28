@@ -4,8 +4,7 @@ import { MyShop } from "../context/MyContext";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const {setPageToggle,setCartToggle} = useContext(MyShop)
-
+  const {setCurrentPage} = useContext(MyShop)
   const {cartProduct} = useContext(MyShop)
 
   const commingSoon = () => {
@@ -30,17 +29,18 @@ const Navbar = () => {
           {/* Desktop Menu */}
           <nav className="hidden lg:flex items-center gap-10">
             <a onClick={() => {
-                setPageToggle(true)
+                setCurrentPage('home')
             }} href="#" className="text-white font-medium hover:text-lime-400 transition">
               Home
             </a>
             <a onClick={() => {
-                setPageToggle(false)
-                setCartToggle(false)
+                setCurrentPage('shop')
             }} href="#" className="text-white font-medium hover:text-lime-400 transition">
               Shop
             </a>
-            <a href="#" className="text-white font-medium hover:text-lime-400 transition">
+            <a onClick={() => {
+                setCurrentPage('about')
+            }} href="#" className="text-white font-medium hover:text-lime-400 transition">
               About
             </a>
           </nav>
@@ -50,10 +50,10 @@ const Navbar = () => {
             <button className="text-xl text-white hover:text-lime-400">
               <i className="fa-regular fa-heart"></i>
             </button>
-            <button className="relative text-xl text-white hover:text-lime-400">
-              <i onClick={() => {
-                  setCartToggle(true)
-              }} className="fa-solid fa-cart-shopping"></i>
+            <button onClick={() => {
+                setCurrentPage('cart')
+            }} className="cursor-pointer relative text-xl text-white hover:text-lime-400">
+              <i className="fa-solid fa-cart-shopping"></i>
               <span className="absolute -top-2 -right-3 bg-lime-400 text-black text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
                 {cartProduct.length}
               </span>
@@ -61,9 +61,9 @@ const Navbar = () => {
             <button className="text-xl text-white hover:text-lime-400">
               <i className="fa-regular fa-user"></i>
             </button>
-            <button className="bg-lime-400 hover:bg-lime-300 text-black px-5 py-2 rounded-full font-semibold transition">
+            {/* <button className="bg-lime-400 hover:bg-lime-300 text-black px-5 py-2 rounded-full font-semibold transition">
               Login
-            </button>
+            </button> */}
           </div>
 
           {/* Mobile Menu Button */}
@@ -108,11 +108,11 @@ const Navbar = () => {
               <i className="fa-regular fa-user mr-3"></i>
               Profile
             </button>
-            <button onClick={() => {
+            {/* <button onClick={() => {
                 commingSoon()
             }} className="bg-lime-400 text-black py-3 rounded-xl font-semibold mt-2">
               Login
-            </button>
+            </button> */}
           </nav>
         </div>
       )}

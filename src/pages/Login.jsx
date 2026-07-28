@@ -4,7 +4,7 @@ import { MyShop } from "../context/MyContext";
 import toast from "react-hot-toast";
 
 const Login = () => {
-  const { setFormToggle, setHomeToggle } = useContext(MyShop);
+  const { setCurrentPage } = useContext(MyShop);
   const {
     register,
     reset,
@@ -26,7 +26,7 @@ const Login = () => {
     ) {
       toast.success("Login Successfully");
       localStorage.setItem('isLoggedIn', 'true')
-      setHomeToggle((prev) => !prev);
+      setCurrentPage('home')
     } else {
       toast.error("Invalid Email or Password");
     }
@@ -111,8 +111,7 @@ const Login = () => {
                   />
                 </div>
                 <p className="text-red-500 text-[12px]">
-                  {" "}
-                  {errors.email?.message}{" "}
+                  {errors.email?.message}
                 </p>
               </div>
               <div>
@@ -129,8 +128,7 @@ const Login = () => {
                   <i className="fa-regular fa-eye text-zinc-500 cursor-pointer"></i>
                 </div>
                 <p className="text-red-500 text-[12px]">
-                  {" "}
-                  {errors.password?.message}{" "}
+                  {errors.password?.message}
                 </p>
                 <div className="text-right mt-2">
                   <button
@@ -150,7 +148,7 @@ const Login = () => {
               Don't have an account?
               <span
                 onClick={() => {
-                  setFormToggle((prev) => !prev);
+                  setCurrentPage('register')
                 }}
                 className="text-lime-400 ml-2 cursor-pointer font-semibold"
               >

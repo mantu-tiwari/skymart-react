@@ -10,19 +10,18 @@ import Shop from "./pages/Shop";
 import Cart from "./pages/Cart";
 
 const App = () => {
-  const { formToggle, homeToggle, pageToggle,cartToggle } = useContext(MyShop);
+  const { currentPage } = useContext(MyShop);
 
   return (
     <div>
-      <Navbar/>
-      {/* {formToggle ? <Register/> : <Login/>} */}
-      {/* {homeToggle ? <Home /> : <Login />} */}
-      {/* {pageToggle ? <Home/> : <Shop/>} */}
-      {cartToggle ? <Cart/> : <Shop/>}
-
-      {/* <Navbar/> */}
-      {/* <About/> */}
-      <Footer/>
+      <Navbar />
+      {currentPage === "home" && <Home />}
+      {currentPage === "shop" && <Shop />}
+      {currentPage === "cart" && <Cart />}
+      {currentPage === "about" && <About />}
+      {currentPage === "login" && <Login />}
+      {currentPage === "register" && <Register />}
+      <Footer />
     </div>
   );
 };
