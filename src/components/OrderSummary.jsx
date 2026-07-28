@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import { MyShop } from "../context/MyContext";
 
 const OrderSummary = ({ cart }) => {
   // Temporary Calculation
-  const subtotal = cart.reduce((total, item) => {
-    return total + item.price * item.quantity;
-  }, 0);
+  const {subtotal} = useContext(MyShop)
 
   const delivery = subtotal > 0 ? 0 : 0;
 

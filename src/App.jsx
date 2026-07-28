@@ -14,14 +14,16 @@ const App = () => {
 
   return (
     <div>
-      <Navbar />
+      {currentPage !== "login" && currentPage !== "register" && <Navbar />}
+
       {currentPage === "home" && <Home />}
       {currentPage === "shop" && <Shop />}
       {currentPage === "cart" && <Cart />}
       {currentPage === "about" && <About />}
       {currentPage === "login" && <Login />}
       {currentPage === "register" && <Register />}
-      <Footer />
+      
+      {currentPage !== "login" && currentPage !== "register" && <Footer />}
     </div>
   );
 };

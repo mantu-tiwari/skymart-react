@@ -4,18 +4,16 @@ import { MyShop } from "../context/MyContext";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const {setCurrentPage} = useContext(MyShop)
-  const {cartProduct} = useContext(MyShop)
+  const { cartProduct, setCurrentPage } = useContext(MyShop);
 
   const commingSoon = () => {
-      toast.error('Feature Comming Soon')
-  }
+    toast.error("Feature Comming Soon");
+  };
 
   return (
     <header className="  sticky top-0 z-50 bg-[#090909]/90 backdrop-blur border-b border-zinc-800">
       <div className="max-w-7xl mx-auto px-6">
         <div className="h-20 flex justify-between items-center">
-
           {/* Logo */}
           <div className="flex items-center gap-3">
             <div className="w-11 h-11 rounded-xl bg-lime-400 flex items-center justify-center">
@@ -28,19 +26,31 @@ const Navbar = () => {
 
           {/* Desktop Menu */}
           <nav className="hidden lg:flex items-center gap-10">
-            <a onClick={() => {
-                setCurrentPage('home')
-            }} href="#" className="text-white font-medium hover:text-lime-400 transition">
+            <a
+              onClick={() => {
+                setCurrentPage("home");
+              }}
+              href="#"
+              className="text-white font-medium hover:text-lime-400 transition"
+            >
               Home
             </a>
-            <a onClick={() => {
-                setCurrentPage('shop')
-            }} href="#" className="text-white font-medium hover:text-lime-400 transition">
+            <a
+              onClick={() => {
+                setCurrentPage("shop");
+              }}
+              href="#"
+              className="text-white font-medium hover:text-lime-400 transition"
+            >
               Shop
             </a>
-            <a onClick={() => {
-                setCurrentPage('about')
-            }} href="#" className="text-white font-medium hover:text-lime-400 transition">
+            <a
+              onClick={() => {
+                setCurrentPage("about");
+              }}
+              href="#"
+              className="text-white font-medium hover:text-lime-400 transition"
+            >
               About
             </a>
           </nav>
@@ -50,9 +60,12 @@ const Navbar = () => {
             <button className="text-xl text-white hover:text-lime-400">
               <i className="fa-regular fa-heart"></i>
             </button>
-            <button onClick={() => {
-                setCurrentPage('cart')
-            }} className="cursor-pointer relative text-xl text-white hover:text-lime-400">
+            <button
+              onClick={() => {
+                setCurrentPage("cart");
+              }}
+              className="cursor-pointer relative text-xl text-white hover:text-lime-400"
+            >
               <i className="fa-solid fa-cart-shopping"></i>
               <span className="absolute -top-2 -right-3 bg-lime-400 text-black text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
                 {cartProduct.length}
@@ -61,9 +74,16 @@ const Navbar = () => {
             <button className="text-xl text-white hover:text-lime-400">
               <i className="fa-regular fa-user"></i>
             </button>
-            {/* <button className="bg-lime-400 hover:bg-lime-300 text-black px-5 py-2 rounded-full font-semibold transition">
-              Login
-            </button> */}
+            <button
+              onClick={() => {
+                toast.error("Logout Successfully");
+                localStorage.setItem("isLoggedIn", "false");
+                setCurrentPage("login");
+              }}
+              className="bg-lime-400 hover:bg-lime-300 text-black px-5 py-2 rounded-full font-semibold transition"
+            >
+              <i className="fa-solid fa-arrow-right-from-bracket"></i>
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -90,21 +110,30 @@ const Navbar = () => {
               About
             </a>
             <hr className="border-zinc-700" />
-            <button onClick={() => {
-                commingSoon()
-            }} className="text-left text-white">
+            <button
+              onClick={() => {
+                commingSoon();
+              }}
+              className="text-left text-white"
+            >
               <i className="fa-regular fa-heart mr-3"></i>
               Wishlist
             </button>
-            <button onClick={() => {
-                commingSoon()
-            }} className="text-left text-white">
+            <button
+              onClick={() => {
+                commingSoon();
+              }}
+              className="text-left text-white"
+            >
               <i className="fa-solid fa-cart-shopping mr-3"></i>
               Cart
             </button>
-            <button onClick={() => {
-                commingSoon()
-            }} className="text-left text-white">
+            <button
+              onClick={() => {
+                commingSoon();
+              }}
+              className="text-left text-white"
+            >
               <i className="fa-regular fa-user mr-3"></i>
               Profile
             </button>

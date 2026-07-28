@@ -4,14 +4,19 @@ import axios from "axios";
 export const MyShop = createContext();
 
 export const ContextProvider = ({ children }) => {
-  // const [formToggle, setFormToggle] = useState(false);
-  // const [homeToggle, setHomeToggle] = useState(true);
-  // const [pageToggle, setPageToggle] = useState(false);
-  // const [cartToggle, setCartToggle] = useState(false);
+  const [currentPage, setCurrentPage] = useState(() => {
+    const isLoggedIn = localStorage.getItem("isLoggedin");
 
-  const [currentPage, setCurrentPage] = useState('login')
+    console.log("isLoggedIn =", isLoggedIn);
+    return isLoggedIn === "true" ? "home" : "login";
+  });
   const [product, setProduct] = useState([]);
   const [cartProduct, setCartProduct] = useState([]);
+
+  const subtotal = cartProduct.reduce((total, item) => {
+  return total + item.price * item.quantity;
+}, 0);
+
   console.log(product);
   console.log(cartProduct);
 
@@ -29,19 +34,19 @@ export const ContextProvider = ({ children }) => {
 
   //  manipulate quantity logic
   const incQuantity = (id) => {
-      setCartProduct((prev) => {
-          return prev.map((elem) => {
-              return elem.id === id ? {...elem, quantity: elem.quantity+1} : elem
-          })
-      })
-  }
+    setCartProduct((prev) => {
+      return prev.map((elem) => {
+        return elem.id === id ? { ...elem, quantity: elem.quantity + 1 } : elem;
+      });
+    });
+  };
   const decQuantity = (id) => {
-      setCartProduct((prev) => {
-          return prev.map((elem) => {
-              return elem.id === id ? {...elem, quantity: elem.quantity-1} : elem
-          })
-      })
-  }
+    setCartProduct((prev) => {
+      return prev.map((elem) => {
+        return elem.id === id ? { ...elem, quantity: elem.quantity - 1 } : elem;
+      });
+    });
+  };
 
   return (
     <MyShop.Provider
@@ -52,7 +57,8 @@ export const ContextProvider = ({ children }) => {
         cartProduct,
         incQuantity,
         decQuantity,
-        setCartProduct
+        setCartProduct,
+        subtotal,
       }}
     >
       {children}

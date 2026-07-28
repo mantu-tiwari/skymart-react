@@ -5,7 +5,7 @@ import { MyShop } from "../context/MyContext";
 
 const Home = () => {
 
-  const {setCurrentPage} = useContext(MyShop)
+  const {setCurrentPage, subtotal} = useContext(MyShop)
 
   return (
     
@@ -65,7 +65,7 @@ const Home = () => {
                 <i className="fa-solid fa-cube text-2xl text-lime-400"></i>
               </div>
               <div>
-                <h2 className="text-4xl font-bold text-white">3</h2>
+                <h2 className="text-4xl font-bold text-white">0</h2>
                 <h3 className="text-xl font-semibold text-white">Cart Items</h3>
                 <p className="text-zinc-400">In your bag</p>
               </div>
@@ -76,7 +76,7 @@ const Home = () => {
                 <i className="fa-solid fa-arrow-trend-up text-2xl text-blue-400"></i>
               </div>
               <div>
-                <h2 className="text-4xl font-bold text-white">$34.97</h2>
+                <h2 className="text-4xl font-bold text-white">{subtotal.toFixed(2)} </h2>
                 <h3 className="text-xl font-semibold text-white">Cart Value</h3>
                 <p className="text-zinc-400">Ready to checkout</p>
               </div>
